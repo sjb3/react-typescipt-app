@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
+import { TextField } from "@material-ui/core";
 
 type FormElem = React.FormEvent<HTMLFormElement>;
 
@@ -28,13 +30,18 @@ export default function App() {
     setTodos(newTodos);
   };
 
-  // console.log(todos);
+  const removeTodo = (index: number): void => {
+    const newTodos: ITodo[] = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
   return (
-    <>
+    <div className="App">
       <h1>Make To Do list with Typescript</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
+        <TextField
+          label="What to do?"
           value={value}
           onChange={e => setValue(e.target.value)}
           required
@@ -44,15 +51,24 @@ export default function App() {
       <section>
         {todos.map((todo: ITodo, index: number) => (
           <div key={index}>
-            <p>{todo.text}</p>
-            <button type="button" onClick={() => completeTodo(index)}>
+            <p
+              style={{
+                textDecoration: todo.complete ? "line-through" : ""
+              }}
+            >
+              {todo.text}
+            </p>
+            <div onClick={() => completeTodo(index)}>
               {" "}
               {todo.complete ? "Incomplete" : "Complete"}
+            </div>
+            <button type="button" onClick={() => removeTodo(index)}>
+              &times;
             </button>
           </div>
         ))}
       </section>
-    </>
+    </div>
   );
 }
 
