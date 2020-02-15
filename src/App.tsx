@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { TextField } from "@material-ui/core";
 
@@ -70,12 +70,4 @@ export default function App() {
       </section>
     </div>
   );
-}
-
-{
-  /* <div>
-  <div>{todo.text}</div>
-  <button type='button' onClick={() => completeTodo(index: number? 'Incomplete':'Complete')}>{todo.complete}</button>
-          ))}
-        </div > */
 }
